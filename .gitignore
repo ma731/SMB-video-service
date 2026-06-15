@@ -1,0 +1,4 @@
+.DS_Store
+*.tmp
+build_tracker.py
+node_modules/
