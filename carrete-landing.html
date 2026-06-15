@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrete — Vídeo profesional para tu negocio en 48h</title>
+<meta name="description" content="Reels y vídeos cortos para restaurantes, hoteles, gimnasios y clínicas en Madrid. Tú nos pasas las fotos, nosotros hacemos el vídeo. Listo en 48 horas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080b; --bg-soft:#0f0f15; --ink:#f5f5f8; --muted:#b4b4c0; --fine:#c4c4cf;
+    --glass:rgba(255,255,255,.045); --glass-brd:rgba(255,255,255,.09);
+    --accent:#ff5e3a; --accent2:#ffc24b; --accent3:#ff2d78;
+    --accent-purple:#7a2dff; --accent-blue:#2a6df4; --ink-on-accent:#16100c;
+    --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+    --grad-warm:linear-gradient(135deg,var(--accent3),var(--accent),var(--accent2));
+    --r:22px; --r-sm:14px; --r-lg:30px; --r-phone:38px; --r-mini:26px;
+    --display:'Sora',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+    --shadow:0 24px 60px -20px rgba(0,0,0,.7);
+    --nav-h:68px;                /* nav height; scroll-progress + sticky header derive from this */
+    /* award-level enhancement tokens */
+    --progress-h:2px;            /* scroll-progress bar thickness */
+    --mx:50%; --my:50%;          /* spotlight cursor coords (set per-card via JS) */
+    --spot:rgba(255,194,75,.14); /* spotlight glow tint */
+    --tilt-x:0deg; --tilt-y:0deg;/* 3D tilt defaults (set per-element via JS) */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  }
+  /* subtle grain overlay — strengthened + slow steps() flicker (gated by reduced-motion) */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain-flicker 1.2s steps(4) infinite;
+  }
+  @keyframes grain-flicker{0%{opacity:.05}50%{opacity:.04}100%{opacity:.06}}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,.logo{font-family:var(--display);letter-spacing:-.025em}
+  /* Solid color set first as a fallback; if background-clip:text is unsupported the
+     accent color shows instead of an invisible transparent fill. */
+  .grad-text{color:var(--accent2);background:var(--grad-warm);background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:grad-shift 9s ease-in-out infinite}
+  @keyframes grad-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    .grad-text{-webkit-text-fill-color:currentColor;color:var(--accent2)}
+  }
+
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:var(--ink-on-accent);font-weight:700;
+    padding:14px 26px;border-radius:999px;font-size:1rem;border:none;cursor:pointer;
+    transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s;box-shadow:0 10px 30px -8px rgba(255,94,58,.5)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(255,94,58,.65)}
+  .btn:active{transform:translateY(0);box-shadow:0 6px 18px -8px rgba(255,94,58,.5)}
+  .btn:disabled,.btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;pointer-events:none}
+  .btn.ghost{background:transparent;border:1.5px solid var(--glass-brd);color:var(--ink);box-shadow:none}
+  .btn.ghost:hover{border-color:var(--accent2);background:var(--glass)}
+  .btn.ghost:active{background:rgba(255,255,255,.08);border-color:var(--accent2)}
+  .btn.light{background:#fff;color:#111}
+  .btn.light:active{background:#e9e9ee}
+  :focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:6px}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent2);font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;font-size:.74rem;
+    background:var(--glass);border:1px solid var(--glass-brd);padding:7px 14px;border-radius:999px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:40;background:rgba(8,8,11,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+  .logo{font-weight:800;font-size:1.35rem;display:flex;align-items:center;gap:2px}
+  .logo .pop{color:var(--accent)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.95rem;font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  /* HERO */
+  header{position:relative;padding:90px 0 70px;overflow:hidden}
+  .aurora{position:absolute;inset:-20% -10% auto -10%;height:130%;z-index:0;filter:blur(70px);opacity:.55;
+    background:
+      radial-gradient(40% 50% at 20% 20%,rgba(255,45,120,.5),transparent 60%),
+      radial-gradient(45% 50% at 80% 15%,rgba(255,194,75,.45),transparent 60%),
+      radial-gradient(50% 60% at 60% 60%,rgba(255,94,58,.5),transparent 60%);
+    animation:drift 16s ease-in-out infinite alternate}
+  @keyframes drift{to{transform:translate3d(0,-30px,0) scale(1.08)}}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;position:relative;z-index:2}
+  header h1{font-size:clamp(2.4rem,5.4vw,4.1rem);line-height:1.02;font-weight:800;margin:18px 0 0;max-width:13ch}
+  header p.sub{color:var(--muted);font-size:clamp(1.05rem,2.2vw,1.28rem);max-width:46ch;margin:22px 0 0}
+  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero-trust{margin-top:26px;display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.9rem}
+  .avatars{display:flex}
+  .avatars span{width:30px;height:30px;border-radius:50%;border:2px solid var(--bg);margin-left:-9px;background:var(--grad-warm)}
+  .avatars span:first-child{margin-left:0}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px;text-align:center}
+    header h1,header p.sub{margin-left:auto;margin-right:auto}.hero-cta,.hero-trust{justify-content:center}}
+
+  /* PHONE MOCKUP */
+  .phone-stage{position:relative;display:flex;justify-content:center}
+  .phone{position:relative;width:270px;aspect-ratio:9/19;background:#0c0c10;border-radius:var(--r-phone);
+    border:2px solid rgba(255,255,255,.12);box-shadow:var(--shadow),inset 0 0 0 6px #000;overflow:hidden;
+    animation:float 6s ease-in-out infinite}
+  @keyframes float{50%{transform:translateY(-14px)}}
+  .phone .notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:20px;background:#000;border-radius:999px;z-index:5}
+  .reel-vid{position:absolute;inset:0;background:linear-gradient(135deg,var(--accent),var(--accent3) 45%,var(--accent-purple));background-size:200% 200%;animation:shift 7s ease infinite}
+  @keyframes shift{50%{background-position:100% 100%}}
+  .reel-vid::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 35%,rgba(255,255,255,.28),transparent 70%)}
+  .reel-ui{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:space-between;padding:26px 14px 18px;color:#fff}
+  .reel-bars{display:flex;gap:4px}
+  .reel-bars i{height:3px;flex:1;background:rgba(255,255,255,.35);border-radius:2px;overflow:hidden}
+  .reel-bars i:first-child{background:rgba(255,255,255,.9)}
+  .reel-cap{font-family:var(--display);font-weight:700;font-size:1.05rem;text-shadow:0 2px 12px rgba(0,0,0,.5);line-height:1.25}
+  .reel-cap small{display:block;font-family:var(--body);font-weight:500;font-size:.78rem;opacity:.85;margin-top:6px}
+  .reel-side{position:absolute;right:12px;bottom:64px;display:flex;flex-direction:column;gap:18px;align-items:center;z-index:4}
+  .reel-side svg{width:26px;height:26px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}
+  .play-pulse{position:absolute;top:50%;left:50%;width:60px;height:60px;transform:translate(-50%,-50%);border-radius:50%;
+    background:rgba(255,255,255,.18);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;z-index:4}
+  .play-pulse::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.5);animation:pulse 2.2s ease-out infinite}
+  @keyframes pulse{to{transform:scale(1.8);opacity:0}}
+  /* floating chips */
+  .chip{position:absolute;z-index:6;background:rgba(15,15,21,.86);border:1px solid var(--glass-brd);backdrop-filter:blur(8px);
+    padding:10px 14px;border-radius:14px;font-size:.82rem;font-weight:600;box-shadow:var(--shadow);display:flex;gap:8px;align-items:center}
+  .chip b{color:var(--accent2)}
+  .chip.c1{top:24px;left:-6px;animation:float 5s ease-in-out infinite}
+  .chip.c2{bottom:60px;right:-14px;animation:float 5.6s ease-in-out .4s infinite}
+  @media(max-width:520px){.chip.c1{left:0}.chip.c2{right:0}}
+
+  /* MARQUEE */
+  .marquee{margin-top:30px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee+.marquee{margin-top:0;border-top:none}
+  .marquee-track{display:flex;gap:44px;width:max-content;animation:scroll 26s linear infinite}
+  .marquee-track.rev{animation:scroll-rev 30s linear infinite}
+  /* pause both rows when hovering anywhere in the marquee */
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee span{color:var(--muted);font-family:var(--display);font-weight:600;font-size:1.05rem;white-space:nowrap;display:flex;align-items:center;gap:44px}
+  .marquee span::after{content:"●";color:var(--accent);font-size:.5rem}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  @keyframes scroll-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+  section{padding:84px 0;position:relative}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 52px}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;margin:14px 0 0}
+  .section-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+  /* sticky title: steps scroll past a pinned header (sits below the nav, offset via --nav-h) */
+  .section-head.sticky{position:sticky;top:calc(var(--nav-h) + 12px);z-index:3;
+    background:linear-gradient(180deg,var(--bg) 60%,transparent);padding-bottom:18px;margin-bottom:34px}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .stat{background:var(--glass);border:1px solid var(--glass-brd);border-radius:var(--r);padding:30px;text-align:center;backdrop-filter:blur(6px)}
+  .stat b{display:block;font-family:var(--display);font-size:2.4rem;font-weight:800}
+  .stat span{color:var(--muted);font-size:.92rem}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .step{background:var(--glass);border:1px solid var(--glass-brd);border-radius:var(--r);padding:32px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+  /* spotlight glow follows cursor via --mx/--my (set by JS; border-hover remains the fallback) */
+  .step::before,.tier::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
+    opacity:0;transition:opacity .25s;
+    background:radial-gradient(220px circle at var(--mx) var(--my),var(--spot),transparent 60%)}
+  .step:hover::before,.tier:hover::before{opacity:1}
+  .step>*,.tier>*{position:relative;z-index:1}
+  .step:hover{transform:translateY(-6px);border-color:rgba(255,194,75,.4)}
+  .step .ic{width:52px;height:52px;border-radius:14px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .step .ic svg{width:26px;height:26px;color:var(--ink-on-accent)}
+  .step .k{font-family:var(--display);font-size:.8rem;color:var(--accent2);font-weight:700}
+  .step h3{font-size:1.2rem;margin:6px 0 8px}
+  .step p{color:var(--muted);font-size:.97rem}
+
+  /* SAMPLES — BENTO grid: s1 is the featured tile (wider column + spans both rows) */
+  .samples{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:24px;
+    align-items:stretch;perspective:1100px}
+  .mini-phone{width:100%;max-width:none;aspect-ratio:9/16;border-radius:var(--r-mini);border:2px solid rgba(255,255,255,.1);
+    position:relative;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s;align-self:center}
+  .mini-phone:hover{transform:translateY(-8px) rotate(-1deg)}
+  /* featured tile spans the full left column / both rows and goes taller */
+  .samples .s1{grid-row:1 / span 2;aspect-ratio:9/14;max-width:420px;justify-self:center;
+    transform-style:preserve-3d;will-change:transform}
+  .samples .s2,.samples .s3{max-width:300px;justify-self:center}
+  .samples .s1:hover{transform:rotateX(var(--tilt-x)) rotateY(var(--tilt-y))}
+  .mini-phone .v{position:absolute;inset:0;background-size:200% 200%;animation:shift 8s ease infinite}
+  .s1 .v{background:linear-gradient(135deg,#ff7b39,#b5121b)}
+  .s2 .v{background:linear-gradient(135deg,var(--accent-blue),#0b1a3a)}
+  .s3 .v{background:linear-gradient(135deg,var(--accent3),var(--accent-purple))}
+  .mini-phone .v::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.55))}
+  .mini-cap{position:absolute;bottom:16px;left:14px;right:14px;z-index:3;color:#fff;font-family:var(--display);font-weight:700;font-size:.95rem;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+  .mini-cap small{display:block;font-family:var(--body);font-weight:500;opacity:.85;font-size:.74rem;margin-top:4px}
+  .mini-tag{position:absolute;top:14px;left:14px;z-index:3;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);color:#fff;font-size:.7rem;font-weight:600;padding:5px 10px;border-radius:999px}
+
+  /* PRICING */
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch;perspective:1100px}
+  .tier{background:var(--glass);border:1px solid var(--glass-brd);border-radius:var(--r);padding:28px 24px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .2s}
+  .tier:hover{transform:translateY(-5px)}
+  /* featured tile carries the 3D tilt (vars set by JS, default 0deg) */
+  .tier.featured{transform:rotateX(var(--tilt-x)) rotateY(var(--tilt-y));transform-style:preserve-3d;will-change:transform}
+  .tier.featured:hover{transform:translateY(-5px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))}
+  .tier.featured{background:linear-gradient(180deg,rgba(255,94,58,.14),var(--glass));border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 30px 60px -25px rgba(255,94,58,.5)}
+  .tier .badge{align-self:flex-start;background:var(--grad);color:var(--ink-on-accent);font-size:.68rem;font-weight:800;padding:5px 11px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+  .tier h3{font-size:1.25rem}
+  .tier .desc{color:var(--muted);font-size:.84rem;min-height:34px;margin-top:2px}
+  .price{font-family:var(--display);font-size:2.3rem;font-weight:800;margin:14px 0 0;letter-spacing:-.03em}
+  .price small{font-size:.9rem;color:var(--muted);font-weight:500}
+  .tier ul{list-style:none;margin:18px 0 22px;flex:1}
+  .tier li{padding:7px 0;color:var(--muted);font-size:.9rem;display:flex;gap:9px;align-items:flex-start}
+  .tier li svg{width:16px;height:16px;color:var(--accent2);flex:none;margin-top:3px}
+  .tier .btn{justify-content:center;width:100%}
+  @media(max-width:980px){.tiers{grid-template-columns:repeat(2,1fr)}}
+
+  /* TESTIMONIAL */
+  .quote{max-width:780px;margin:0 auto;text-align:center;background:var(--glass);border:1px solid var(--glass-brd);border-radius:var(--r);padding:48px 40px}
+  .quote p{font-family:var(--display);font-size:clamp(1.2rem,2.6vw,1.6rem);font-weight:600;line-height:1.4}
+  .quote .who{margin-top:20px;color:var(--muted);font-size:.92rem}
+  .quote .stars{color:var(--accent2);font-size:1.1rem;letter-spacing:3px;margin-bottom:8px}
+
+  /* FAQ */
+  .faq{max-width:780px;margin:0 auto}
+  details{background:var(--glass);border:1px solid var(--glass-brd);border-radius:var(--r-sm);padding:20px 24px;margin-bottom:12px;transition:border-color .2s}
+  details[open]{border-color:rgba(255,194,75,.35)}
+  summary{font-family:var(--display);font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--accent2);font-size:1.5rem;font-weight:300;transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--muted);margin-top:12px}
+
+  /* FINAL CTA */
+  .cta-panel{position:relative;border-radius:var(--r-lg);padding:64px 40px;text-align:center;overflow:hidden;border:1px solid var(--glass-brd)}
+  .cta-panel .aurora{opacity:.7}
+  .cta-panel h2{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:800;position:relative;z-index:2}
+  .cta-panel p{color:rgba(255,255,255,.85);max-width:46ch;margin:16px auto 30px;position:relative;z-index:2}
+  .cta-panel .hero-cta{justify-content:center;position:relative;z-index:2}
+
+  footer{border-top:1px solid rgba(255,255,255,.06);padding:48px 0;text-align:center;color:var(--muted);font-size:.9rem}
+  footer .logo{justify-content:center;margin-bottom:12px}
+  footer .fine{font-size:.76rem;color:var(--fine);margin-top:10px;max-width:60ch;margin-left:auto;margin-right:auto}
+
+  /* SCROLL PROGRESS BAR — zero-JS, driven by the root scroll timeline (progressive enhancement) */
+  .scroll-progress{position:fixed;top:var(--nav-h);left:0;height:var(--progress-h);width:100%;z-index:39;
+    transform-origin:0 50%;transform:scaleX(0);background:var(--grad-warm);pointer-events:none;display:none}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{display:block;animation:progress-grow linear;animation-timeline:scroll(root)}
+  }
+  @keyframes progress-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  /* reveal — IntersectionObserver fallback by default; CSS view() timeline as enhancement */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @supports (animation-timeline:view()){
+    /* progressive enhancement: drive the reveal from the element's own view progress.
+       The JS observer is disabled in this branch (see script). */
+    .reveal{opacity:0;transform:translateY(26px);transition:none;
+      animation:reveal-in linear both;animation-timeline:view();animation-range:entry 5% cover 28%}
+    .reveal.in{opacity:1;transform:none}
+    @keyframes reveal-in{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    /* final-state safeguard: reveals stay visible, never stuck hidden, in either branch */
+    .reveal{opacity:1!important;transform:none!important;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* SAMPLES + sticky-header responsive collapse */
+  @media(max-width:820px){
+    .samples{grid-template-columns:1fr}
+    .samples .s1{grid-row:auto;aspect-ratio:9/16;max-width:300px}
+    .section-head.sticky{position:static;background:none;padding-bottom:0}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Carrete<span class="pop">●</span></div>
+    <div class="nav-links">
+      <a href="#como">Cómo funciona</a>
+      <a href="#precios">Precios</a>
+      <a class="btn" href="#contacto">Pide tu vídeo gratis</a>
+    </div>
+  </div>
+</nav>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<main>
+<header>
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Vídeo para negocios · Madrid</span>
+        <h1>Vídeos que <span class="grad-text">llenan tu negocio</span>.</h1>
+        <p class="sub">Reels profesionales para tu restaurante, hotel, gimnasio o clínica. Tú nos pasas las fotos, nosotros hacemos el vídeo. Listo en 48 horas.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#contacto">Reserva tu vídeo gratis →</a>
+          <a class="btn ghost" href="#precios">Ver precios</a>
+        </div>
+        <div class="hero-trust">
+          <div class="avatars"><span></span><span></span><span></span><span></span></div>
+          Sin cámaras, sin sesiones, sin permanencia.
+        </div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="chip c1">⚡ <span>Entrega en <b>48 h</b></span></div>
+        <div class="chip c2">📈 <span><b>+40%</b> más consultas*</span></div>
+        <div class="phone" aria-hidden="true">
+          <div class="notch"></div>
+          <div class="reel-vid"></div>
+          <div class="play-pulse">
+            <svg viewBox="0 0 24 24" width="22" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="reel-ui">
+            <div class="reel-bars"><i></i><i></i><i></i><i></i></div>
+            <div class="reel-cap">El plato del que todo el barrio habla 👀
+              <small>@tu.restaurante · Madrid</small>
+            </div>
+          </div>
+          <div class="reel-side">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 1 1 21 11.5z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 12v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Restaurantes<span></span>Cafeterías<span></span>Hoteles<span></span>Gimnasios<span></span>Clínicas<span></span>Peluquerías<span></span>Tiendas<span></span>Bares</span>
+      <span>Restaurantes<span></span>Cafeterías<span></span>Hoteles<span></span>Gimnasios<span></span>Clínicas<span></span>Peluquerías<span></span>Tiendas<span></span>Bares</span>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track rev">
+      <span>Recetas<span></span>Eventos<span></span>Promociones<span></span>Novedades<span></span>Reservas<span></span>Ofertas<span></span>Marca<span></span>Comunidad</span>
+      <span>Recetas<span></span>Eventos<span></span>Promociones<span></span>Novedades<span></span>Reservas<span></span>Ofertas<span></span>Marca<span></span>Comunidad</span>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:64px">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><b class="grad-text">+40%</b><span>más consultas en anuncios con vídeo*</span></div>
+      <div class="stat"><b class="grad-text">48 h</b><span>de entrega media por vídeo</span></div>
+      <div class="stat"><b class="grad-text">0 €</b><span>tu primer vídeo de prueba</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="como">
+  <div class="wrap">
+    <div class="section-head sticky reveal">
+      <span class="eyebrow"><span class="dot"></span>Cómo funciona</span>
+      <h2>Tres pasos. Cero complicaciones.</h2>
+      <p>No necesitas equipo, ni saber editar, ni aparecer en cámara. Nosotros nos encargamos de todo.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 6v6m-3-3h6"/></svg></div>
+        <span class="k">PASO 1</span>
+        <h3>Nos pasas el material</h3>
+        <p>Fotos de tu local, platos o productos desde el móvil — o grabamos un vídeo rápido contigo. 10 minutos y listo.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15l-1.9-4.1L5.5 9l4.6-1.4z"/><path d="M18 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div>
+        <span class="k">PASO 2</span>
+        <h3>Creamos el vídeo</h3>
+        <p>Montamos un Reel vertical con música de tendencia, textos y acabado profesional, optimizado para Instagram, TikTok y Reels.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.8-.8.7-2 0-2.8a2 2 0 0 0-3 .8z"/><path d="M12 15l-3-3a11 11 0 0 1 6-8c3-1 5-1 5-1s0 2-1 5a11 11 0 0 1-8 6z"/></svg></div>
+        <span class="k">PASO 3</span>
+        <h3>Publicas y vendes</h3>
+        <p>Recibes el vídeo en 48 h, listo para subir. Te damos también el texto y el mejor horario para publicar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ejemplos" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Ejemplos</span>
+      <h2>Así se ven tus Reels</h2>
+      <p>Sustituye estos modelos por tus 3 mejores vídeos de muestra cuando los tengas grabados.</p>
+    </div>
+    <div class="samples">
+      <div class="mini-phone s1 reveal"><div class="v"></div><span class="mini-tag">Restaurante</span><div class="mini-cap">El plato del que todo el barrio habla 👀<small>Reserva en bio</small></div></div>
+      <div class="mini-phone s2 reveal"><div class="v"></div><span class="mini-tag">Hotel</span><div class="mini-cap">Imagina despertarte aquí mañana ☀️<small>Reserva directa, sin comisiones</small></div></div>
+      <div class="mini-phone s3 reveal"><div class="v"></div><span class="mini-tag">Gimnasio</span><div class="mini-cap">Tu primera clase, gratis 🔥<small>Esta semana en tu barrio</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Precios</span>
+      <h2>Planes simples y mensuales</h2>
+      <p>Sin permanencia. Cancela cuando quieras. Empieza con un vídeo de prueba gratis. IVA no incluido.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <h3>Básico</h3>
+        <p class="desc">Para empezar a estar presente.</p>
+        <div class="price">149 €<small> /mes</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>2 vídeos al mes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Formato vertical 9:16</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Música + subtítulos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Entrega en 48 h</li>
+        </ul>
+        <a class="btn ghost" href="#contacto">Elegir Básico</a>
+      </div>
+      <div class="tier reveal">
+        <h3>Starter</h3>
+        <p class="desc">Constancia sin esfuerzo.</p>
+        <div class="price">299 €<small> /mes</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>4 vídeos al mes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Todo lo de Básico</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Textos para publicar</li>
+        </ul>
+        <a class="btn ghost" href="#contacto">Elegir Starter</a>
+      </div>
+      <div class="tier featured reveal">
+        <span class="badge">Más elegido</span>
+        <h3>Growth</h3>
+        <p class="desc">Para crecer de verdad.</p>
+        <div class="price">499 €<small> /mes</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>8 vídeos al mes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Guion e ideas de contenido</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Calendario de publicación</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>1 revisión por vídeo</li>
+        </ul>
+        <a class="btn" href="#contacto">Elegir Growth</a>
+      </div>
+      <div class="tier reveal">
+        <h3>Pro</h3>
+        <p class="desc">Tu equipo de vídeo completo.</p>
+        <div class="price">799 €<small> /mes</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>12 vídeos al mes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Todo lo de Growth</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>1 visita mensual al local</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Soporte prioritario</li>
+        </ul>
+        <a class="btn ghost" href="#contacto">Elegir Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <!-- PLACEHOLDER: este testimonio es ficticio (de muestra). Sustituye el texto y el autor
+         por una reseña real con permiso de tu primer cliente antes de publicar. -->
+    <div class="quote reveal">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <p>[Testimonio de muestra] "Subimos el primer Reel un viernes y el fin de semana entró más gente preguntando por el plato del vídeo. En un mes ya no publicamos nada sin ellos."</p>
+      <div class="who">— [Nombre y negocio del cliente · sustituir por un testimonio real]</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Preguntas frecuentes</span>
+      <h2>Lo que sueles preguntarte</h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>¿Tengo que salir yo en los vídeos?</summary><p>No hace falta. Trabajamos con fotos y planos de tu local, tus platos o tus productos. Si quieres aparecer, mejor — pero no es obligatorio.</p></details>
+      <details><summary>¿Necesito grabar con buena cámara?</summary><p>No. Con fotos y vídeos del móvil es suficiente. Nosotros nos encargamos del montaje, el ritmo y el acabado profesional.</p></details>
+      <details><summary>¿Cuánto tardáis?</summary><p>48 horas de media desde que recibimos el material. En los planes Growth y Pro priorizamos las entregas.</p></details>
+      <details><summary>¿Hay permanencia?</summary><p>Ninguna. Es mensual y puedes cancelar cuando quieras. Empezamos con un vídeo de prueba gratis para que lo veas sin riesgo.</p></details>
+      <details><summary>¿Usáis inteligencia artificial?</summary><p>Sí, usamos herramientas de IA para acelerar el montaje y mejorar la imagen, siempre a partir de tu material real y etiquetado como corresponde. El resultado es tu negocio, mejor contado.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="cta-panel reveal">
+      <div class="aurora"></div>
+      <h2>Tu primer vídeo, gratis.</h2>
+      <p>Escríbenos por WhatsApp o email y en 24 h te decimos cómo quedaría tu primer Reel. Sin compromiso.</p>
+      <div class="hero-cta">
+        <!-- PLACEHOLDER: sustituye 34XXXXXXXXX por tu número de WhatsApp real, en formato internacional
+             sin signos ni espacios (ej. 34612345678). Sustituye también el email hola@carrete.studio
+             por tu dirección real antes de publicar. -->
+        <a class="btn light" href="https://wa.me/34XXXXXXXXX?text=Hola%2C%20quiero%20mi%20v%C3%ADdeo%20de%20prueba%20gratis" target="_blank" rel="noopener">Escríbenos por WhatsApp [poner número]</a>
+        <a class="btn ghost" href="mailto:hola@carrete.studio?subject=Quiero%20mi%20video%20de%20prueba">hola@carrete.studio [email de ejemplo]</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">Carrete<span class="pop">●</span></div>
+    <p>Vídeo profesional para negocios locales · Madrid · © 2026</p>
+    <!-- PLACEHOLDER: la nota * es un dato de referencia del sector, no un resultado propio.
+         Sustitúyela por tus métricas reales (con fuente) cuando las tengas. -->
+    <p class="fine">* Dato de referencia del sector (los anuncios con vídeo reciben en torno a un 40% más de consultas). Sustituir por tus propios resultados cuando los tengas.</p>
+  </div>
+</footer>
+
+<script>
+  // ---- Scroll reveal (IntersectionObserver fallback) ----
+  // If the browser supports CSS view() scroll-timelines, the reveal is driven purely
+  // by CSS (see @supports block) and we skip the observer. Otherwise we observe here.
+  const supportsViewTimeline = window.CSS && CSS.supports && CSS.supports('animation-timeline:view()');
+  if(!supportsViewTimeline){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
+
+  // ---- Pointer-driven enhancements ----
+  // Gate: skip entirely for reduced-motion users and for coarse/touch pointers,
+  // so mobile and motion-sensitive users are completely unaffected.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const fine   = matchMedia('(pointer: fine)');
+  if(!reduce.matches && fine.matches){
+
+    // Per-move work is batched into a single requestAnimationFrame so layout
+    // reads/writes happen at most once per frame. The element's rect is cached
+    // on pointerenter and reused during the move (no getBoundingClientRect per move).
+    const onMove=(el,apply)=>{
+      let rect=null, lastX=0, lastY=0, frame=0;
+      const flush=()=>{ frame=0; if(rect) apply(el,rect,lastX,lastY); };
+      el.addEventListener('pointerenter',()=>{ rect=el.getBoundingClientRect(); });
+      el.addEventListener('pointermove',e=>{
+        if(!rect) rect=el.getBoundingClientRect();
+        lastX=e.clientX; lastY=e.clientY;
+        if(!frame) frame=requestAnimationFrame(flush);
+      });
+      el.addEventListener('pointerleave',()=>{
+        if(frame){ cancelAnimationFrame(frame); frame=0; }
+        rect=null;
+      });
+    };
+
+    // 3) Magnetic hover on buttons — translate a few px toward the cursor.
+    document.querySelectorAll('.btn').forEach(btn=>{
+      onMove(btn,(el,r,x,y)=>{
+        const dx=(x-(r.left+r.width/2))*0.25;
+        const dy=(y-(r.top+r.height/2))*0.4;
+        el.style.transform='translate('+dx.toFixed(1)+'px,'+(dy-2).toFixed(1)+'px)';
+      });
+      btn.addEventListener('pointerleave',()=>{ btn.style.transform=''; });
+    });
+
+    // 4) Spotlight glow on .step and .tier — feed cursor coords into --mx/--my.
+    document.querySelectorAll('.step,.tier').forEach(card=>{
+      onMove(card,(el,r,x,y)=>{
+        el.style.setProperty('--mx',(x-r.left)+'px');
+        el.style.setProperty('--my',(y-r.top)+'px');
+      });
+    });
+
+    // 7) Subtle 3D tilt (clamped to ±6deg) on the featured tier + featured sample tile.
+    const clamp=(v,m)=>Math.max(-m,Math.min(m,v));
+    document.querySelectorAll('.tier.featured,.samples .s1').forEach(el=>{
+      onMove(el,(node,r,x,y)=>{
+        const ry=clamp(((x-(r.left+r.width/2))/(r.width/2))*6,6);
+        const rx=clamp((((r.top+r.height/2)-y)/(r.height/2))*6,6);
+        node.style.setProperty('--tilt-y',ry.toFixed(2)+'deg');
+        node.style.setProperty('--tilt-x',rx.toFixed(2)+'deg');
+      });
+      el.addEventListener('pointerleave',()=>{
+        el.style.setProperty('--tilt-x','0deg');
+        el.style.setProperty('--tilt-y','0deg');
+      });
+    });
+  }
+</script>
+</body>
+</html>
