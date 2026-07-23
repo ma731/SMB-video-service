@@ -21,4 +21,4 @@ A two-person Madrid studio making **AI-assisted short-form video (Reels/TikTok) 
 Landing page: vanilla HTML/CSS/JS · Video: **Kling** (AI shot) + **CapCut** (assembly) + real footage · Comms/CRM: WhatsApp Business + Google Form/Drive.
 
 ## Status
-MVP plan complete; €1M growth architecture defined (see carrete-path-to-1m.md). **Next:** produce one hero sample reel, then run the 2-week validation sprint (5 free trial videos to real Madrid venues → first paying client). Time-track every video and capture templates from video #1 — the minutes-per-video curve is the business.
+Landing live; €1M growth architecture defined (see carrete-path-to-1m.md). **Sales model (2026-07-23): no free custom videos.** We build 2-3 polished sample reels per vertical once and sell with sample + personalized proposal; risk reversal = revision before delivery + no lock-in. **Next:** produce the vertical sample reels, then run the 2-week validation sprint (30 venues → first paying client). Time-track every video and capture templates from video #1: the minutes-per-video curve is the business.

@@ -10,7 +10,7 @@ Everything below is free or near-free, optimized for two non-technical founders.
 
 **Email — `hola@carrete.studio`.** Start with **Zoho Mail Forever Free** (custom domain, 5 users, 5 GB, no card; caveat: webmail/app only, no IMAP/POP on free). Cheapest fallback: a **registrar forwarding alias** to a Gmail. Upgrade to **Google Workspace Business Starter (~€6.90/user/mo + VAT)** when volume grows.
 
-**Landing-page CTA routing.** Primary button → prefilled WhatsApp: `https://wa.me/34XXXXXXXXX?text=Hola%2C%20quiero%20mi%20reel%20gratis`. Secondary → `mailto:hola@carrete.studio`.
+**Landing-page CTA routing.** Primary button → prefilled WhatsApp: `https://wa.me/34XXXXXXXXX?text=Hola%2C%20quiero%20ver%20ejemplos%20y%20una%20propuesta` (currently mailto until the number exists). Secondary → `#precios`.
 
 **Booking call (optional).** **Calendly Free** allows **only one active event type** — make it "Carrete — 15-min llamada." Fine for an MVP.
 
@@ -21,7 +21,7 @@ Use **WhatsApp labels as the pipeline** — no separate CRM needed:
 `1 Nuevo lead` → `2 Brief enviado` → `3 Recibiendo material` → `4 En edición` → `5 Entregado` → `6 Pitch venta` → `7 Cliente recurrente` → `Perdido`
 
 1. **First contact** (WhatsApp/IG/email) → tag `1 Nuevo lead`, send the offer quick-reply.
-2. **Free-trial brief** → send a **Google Form** (business name, location, what to highlight, vibe, deadline). Responses land in a **Google Sheet** (your client log). Tag `2 Brief enviado`.
+2. **First-video brief** (once they sign) → send a **Google Form** (business name, location, what to highlight, vibe, deadline). Responses land in a **Google Sheet** (your client log). Tag `2 Brief enviado`.
 3. **Asset collection** → venue sends photos/clips in the WhatsApp chat, or via a **Google Drive upload link**. Tag `3 Recibiendo material`.
 4. **Delivery** → upload finished reel to the client's Drive folder + send on WhatsApp. Tag `5 Entregado`.
 5. **Ask for the sale** → scripted quick-reply pitching the monthly plan. Tag `6 Pitch venta` → `7 Cliente recurrente` on yes.

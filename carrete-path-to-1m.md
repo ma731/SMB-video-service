@@ -38,7 +38,7 @@ The current launch kit, executed, plus one change of mindset: **every video prod
 
 ### Layer 2 (months 6-18): Scale production and sales separately. Goal: 80-100 clients, €35-45k MRR
 - **Production:** hire 1-2 part-time editors (film students, €15-20/video piece rate) running the Carrete playbook. Founders stop editing; they own quality control and the template library. Capacity per editor: ~150 videos/mo.
-- **Sales:** the free-first-video wedge becomes a machine. One full-time-equivalent doing 10 outreach/day converts (at even 5% contact-to-paid) ~10-12 new clients/mo. Add the two channels that beat cold DMs:
+- **Sales:** the sample-reel-plus-proposal wedge becomes a machine. One full-time-equivalent doing 10 outreach/day converts (at even 5% contact-to-paid) ~10-12 new clients/mo. Add the two channels that beat cold DMs:
   - **Partnerships:** TheFork/CoverManager account managers, POS vendors, hospitality associations, gestorías. They own trust with thousands of venues; give them 10-15% recurring referral.
   - **The flywheel:** every delivered reel ends with a subtle "vídeo: @carrete" credit. Client posts are the ad. Local business is a village; 30 venues in a barrio means everyone has seen your work.
 - **Geographic clone:** the playbook (docs in this repo, literally) makes Barcelona/Valencia/Sevilla launchable by one salesperson + shared production pool. No office, no shoots (photos come by WhatsApp), so expansion is a hiring decision, not a capital one.
@@ -71,7 +71,7 @@ Nothing in layers 2-3 gets built now. But the €1M frame changes three immediat
 2. **Time-track every video from day 1.** The path to €1M is the minutes-per-video curve going down while quality holds. If video #10 still takes 4 hours, the model is Path A (lifestyle agency), and that is worth knowing early.
 3. **Write down every template as you go.** The template library is the future Autopilot product and the editor-hiring playbook. It costs nothing to capture now and everything to reconstruct later.
 
-**Kill criteria stay honest:** 30+ venues contacted, 5 free samples delivered, zero willingness to pay = the wedge is wrong. Change vertical (hotels? clinics with higher LTV?) or price before adding any layer-2 machinery.
+**Kill criteria stay honest:** 30+ venues contacted, samples and proposals sent, zero willingness to pay = the wedge is wrong. Change vertical (hotels? clinics with higher LTV?) or price before adding any layer-2 machinery.
 
 ---
 

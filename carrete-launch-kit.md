@@ -24,7 +24,7 @@ Done-for-you short-form video for local businesses in Madrid (restaurants, hotel
 | **Growth** (anchor) | **€499** | **8** | Most businesses — the one to push |
 | Pro | €799 | 12 + monthly visit | Serious about social |
 
-**Free first video.** Every first contact gets one free sample reel. This is the wedge that removes risk and gets you in the door — and it's your validation instrument.
+**Sample reels, not free work (decision 2026-07-23).** We do NOT make a free custom video per lead: it undervalues the work and burns production hours on unqualified prospects. Instead, build 2-3 polished **sample reels per vertical** (restaurant, hotel, gym) once, and show every prospect the sample for their type of business plus a concrete proposal. Risk reversal comes from "revisión incluida antes de entregar" + no lock-in, not from free labor.
 
 **Why Básico is 2 videos (not "1 a week"):** at €149, four videos/month would mean ~€37/video and would undercut Starter — training customers to expect bargain pricing. Keeping Básico at 2 videos holds your per-video price at ~€75 across the bottom of the ladder (€75 → €75 → €62 at Growth as a volume discount). If you'd rather sell weekly cadence, price it at ~€199/mo for 4 videos instead. Prices are starting points — raise them once you have proof and testimonials. No lock-in; "cancela cuando quieras" lowers the barrier and is true.
 
@@ -72,24 +72,24 @@ Build **one** of these as your hero sample before any outreach — ideally for t
 ## 5. Outreach kit (steal these)
 
 ### Instagram DM / WhatsApp — Spanish
-> Hola [nombre] 👋 Soy [tu nombre], hacemos vídeos cortos para negocios de [barrio]. Vuestros [platos/espacio] se verían genial en Reels. Os hago **uno gratis** para que lo veáis, sin compromiso. ¿Os mando un ejemplo?
+> Hola [nombre] 👋 Soy [tu nombre], hacemos vídeos cortos para negocios de [barrio]. Vuestros [platos/espacio] se verían genial en Reels. ¿Os mando un **ejemplo de cómo quedaría** un vídeo para un sitio como el vuestro, sin compromiso?
 
 ### Instagram DM / WhatsApp — English (for expat-owned venues)
-> Hi [name] 👋 We make short-form videos for local spots in [neighborhood]. Your [food/space] would look great in Reels — happy to make you **one free sample**, no strings. Want me to send an example?
+> Hi [name] 👋 We make short-form videos for local spots in [neighborhood]. Your [food/space] would look great in Reels. Want me to send a **sample of what a reel for a place like yours looks like**, no strings?
 
 ### Cold email — Spanish
-> **Asunto:** Un Reel gratis para [Negocio]
+> **Asunto:** Así se vería [Negocio] en Reels
 >
 > Hola [nombre],
-> Ayudamos a negocios de [zona] a conseguir más clientes con vídeos cortos para Instagram y TikTok — sin que tengáis que grabar ni editar nada.
-> Os preparamos **un vídeo de prueba gratis** con vuestras fotos. Si os gusta y os trae gente, seguimos; si no, no pasa nada.
-> ¿Os viene bien que os mande un ejemplo esta semana?
+> Ayudamos a negocios de [zona] a conseguir más clientes con vídeos cortos para Instagram y TikTok, sin que tengáis que grabar ni editar nada.
+> Os mando **un vídeo de muestra** de un negocio como el vuestro y una propuesta concreta. Cada vídeo lleva revisión incluida: no publicáis nada que no os encante.
+> ¿Os viene bien que os lo mande esta semana?
 > Un saludo, [nombre] · [WhatsApp] · [web]
 
 ### Objection handling
-- *"Ya tengo a alguien / lo hago yo."* → "Perfecto, por eso el primero es gratis: comparáis y decidís. Sin compromiso."
+- *"Ya tengo a alguien / lo hago yo."* → "Genial. Mirad la muestra y comparad: si lo vuestro ya está a este nivel, no os hacemos falta. Sin compromiso."
 - *"No tengo tiempo."* → "De eso se trata: nos pasáis 10 fotos por WhatsApp y nosotros hacemos el resto."
-- *"¿Cuánto cuesta?"* → "Desde 149 €/mes por 2 vídeos, sin permanencia. Pero el primero es gratis para que lo veáis."
+- *"¿Cuánto cuesta?"* → "Desde 149 €/mes por 2 vídeos, sin permanencia. Y cada vídeo lleva revisión: no pagáis por algo que no os guste."
 - *"No sé si funciona."* → "Por eso medimos: subimos el vídeo, vemos si trae más consultas, y decidís con datos."
 
 ---
@@ -100,17 +100,17 @@ Build **one** of these as your hero sample before any outreach — ideally for t
 
 **Suggested split** (adjust to your co-founder's strengths — tell me what they're good at and I'll re-balance):
 - **Founder A — Sales/relationships:** build the list, do all outreach, run the meetings, close.
-- **Founder B — Production:** make the hero sample + every free trial video, own turnaround.
+- **Founder B — Production:** make the 2-3 vertical sample reels + every paid video, own turnaround.
 
 **Week 1 — Build + reach out**
 - Day 1–2: pick the first vertical + 2–3 neighborhoods; finalize name + Instagram handle; publish the landing page.
 - Day 2–3: produce 1 polished hero sample reel (your calling card).
-- Day 3–7: list 30 target venues (Instagram + Google Maps). Send 10 outreach messages/day. Offer the free trial video.
+- Day 3–7: list 30 target venues (Instagram + Google Maps). Send 10 outreach messages/day with the vertical sample reel attached.
 
 **Week 2 — Deliver + close**
-- Make free sample videos for everyone who says yes (aim for 5).
-- 48 h after they post, follow up: "¿Qué tal funcionó? ¿Seguimos con un plan?"
-- Ask for the sale. Track: # contacted → # replied → # free videos → # paid.
+- To every interested venue: send their vertical's sample + a personalized proposal (which 2-4 videos you'd make for THEM this month, from their existing photos).
+- Follow up 48 h after sending: "¿Lo visteis? ¿Os preparo el plan del primer mes?"
+- Ask for the sale. Track: # contacted → # replied → # proposals sent → # paid.
 
 **Decision rule (end of week 2):**
 - ≥1 paying venue, or strong "yes if you keep going" signals → continue and systematize.
