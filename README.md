@@ -5,6 +5,7 @@ A two-person Madrid studio making **AI-assisted short-form video (Reels/TikTok) 
 > **Thesis:** point AI video at a *specific person who already pays to solve a painful problem* (local venues that need video but can't afford an agency), not at strangers scrolling a feed. Validated with a YC-style teardown; the only thing that counts next is one venue paying.
 
 ## Contents
+- **carrete-path-to-1m.md** — the €1M ARR strategy: 3-layer architecture (productized service → scaled production/sales → Autopilot tier + white-label + chains), unit economics, milestone scoreboard.
 - **carrete-landing.html** — the landing page (self-contained, Spanish, animated). Open in a browser; deployable via GitHub Pages.
 - **office-hours-design-doc.md** — the YC-style diagnostic that chose this idea.
 - **carrete-launch-kit.md** — brand, pricing tiers, service workflow, outreach scripts, 2-week validation plan.
@@ -20,4 +21,4 @@ A two-person Madrid studio making **AI-assisted short-form video (Reels/TikTok) 
 Landing page: vanilla HTML/CSS/JS · Video: **Kling** (AI shot) + **CapCut** (assembly) + real footage · Comms/CRM: WhatsApp Business + Google Form/Drive.
 
 ## Status
-MVP plan complete. **Next:** produce one hero sample reel, then run the 2-week validation sprint (5 free trial videos to real Madrid venues → first paying client).
+MVP plan complete; €1M growth architecture defined (see carrete-path-to-1m.md). **Next:** produce one hero sample reel, then run the 2-week validation sprint (5 free trial videos to real Madrid venues → first paying client). Time-track every video and capture templates from video #1 — the minutes-per-video curve is the business.
