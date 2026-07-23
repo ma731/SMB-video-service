@@ -6,7 +6,7 @@ A two-person Madrid studio making **AI-assisted short-form video (Reels/TikTok) 
 
 ## Contents
 - **carrete-path-to-1m.md** — the €1M ARR strategy: 3-layer architecture (productized service → scaled production/sales → Autopilot tier + white-label + chains), unit economics, milestone scoreboard.
-- **carrete-landing.html** — the landing page (self-contained, Spanish, animated). Open in a browser; deployable via GitHub Pages.
+- **index.html** — the landing page (self-contained, Spanish, animated). Live at https://ma731.github.io/SMB-video-service/ via GitHub Pages.
 - **office-hours-design-doc.md** — the YC-style diagnostic that chose this idea.
 - **carrete-launch-kit.md** — brand, pricing tiers, service workflow, outreach scripts, 2-week validation plan.
 - **carrete-video-tool-decision.md** — tool comparison → **Kling** chosen (free → €6.99/mo commercial).
